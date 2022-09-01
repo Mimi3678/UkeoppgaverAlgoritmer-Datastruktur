@@ -29,5 +29,11 @@ public class Oppgave5 {
 
         for (int k:array) s.add(k);
         for (int k:s) System.out.print(k + " ");
+
+        System.out.println("\n");
+
+        //Eksempel med en tabell der det skrives ut tekst-strenger
+        String[] n = {"Ola", "Miriam", "Nana", "Kari", "Ali"};
+        for (String navn : n) System.out.print(navn +" ");
     }
 }
