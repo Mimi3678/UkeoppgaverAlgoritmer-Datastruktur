@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 //Seksjon 1.2.1
-public class Oppgave5 {
+public class Oppgave5Seksjon121 {
     public static void main(String[] args){
 
         //eksempel med en tabell

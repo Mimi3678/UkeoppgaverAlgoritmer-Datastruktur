@@ -2,7 +2,7 @@ package ukeoppgaverUke35;
 
 //lag to min-metoder tilsvarende de to maks-metodene
 //i programkode 1.2.1b og 1.2.1c - seksjon 1.2.1
-public class Oppgave1 {
+public class Oppgave1Seksjon121 {
     public static void main(String[] args){
         int[] a = {8, 4, 17, 10, 6, 20, 1, 11, 15, 3, 18, 9, 2, 7, 19};
         int m = min(a,0,15);
