@@ -134,7 +134,7 @@ public class Tabell {
         int n = a.length;   // tabellens lengde
 
         if (n < 2) throw   // må ha minst to verdier!
-                new java.util.NoSuchElementException("a.length(" + n + ") < 2!");
+        new java.util.NoSuchElementException("a.length(" + n + ") < 2!");
 
         int m = maks(a);  // m er posisjonen til tabellens største verdi
 
@@ -158,4 +158,88 @@ public class Tabell {
         return new int[] {m,nm};      // m i posisjon 0 , nm i posisjon 1
 
     } // nestMaks
+
+    //Metode for å snu rekkefølgen på et intervall av verdier
+    public static void snu(int[] a, int v, int h) // snur intervallet a[v:h]
+    {
+        while (v < h) bytt(a, v++, h--);
+    }
+    public static void snu(int[] a, int v)  // snur fra og med v og ut tabellen
+    {
+        snu(a, v, a.length - 1);
+    }
+    public static void snu(int[] a)  // snur hele tabellen
+    {
+        snu(a, 0, a.length - 1);
+    }
+
+    //Metode for å finne neste permutasjon
+    public static boolean nestePermutasjon(int[] a)
+    {
+        int i = a.length - 2;                    // i starter nest bakerst
+        while (i >= 0 && a[i] > a[i + 1]) i--;   // går mot venstre
+        if (i < 0) return false;                 // a = {n, n-1, . . . , 2, 1}
+
+        int j = a.length - 1;                    // j starter bakerst
+        while (a[j] < a[i]) j--;                 // stopper når a[j] > a[i]
+        bytt(a,i,j); snu(a,i + 1);               // bytter og snur
+
+        return true;                             // en ny permutasjon
+    }
+
+    //Metode for å finne antall inversjoner i usortert tabell
+    public static int inversjoner(int[] a)
+    {
+        int antall = 0;  // antall inversjoner
+        for (int i = 0; i < a.length - 1; i++)
+        {
+            for (int j = i + 1; j < a.length; j++)
+            {
+                if (a[i] > a[j]) antall++;  // en inversjon siden i < j
+            }
+        }
+        return antall;
+    }
+
+    //Metode for å finne antall inversjoner i sortert tabell
+    public static boolean erSortert(int[] a)
+    {
+        for (int i = 1; i < a.length; i++)      // starter med i = 1
+            if (a[i-1] > a[i]) return false;      // en inversjon
+
+        return true;
+    }
+
+    //Metode for boblesortering
+    public static int boble(int[] a)
+    {
+        int antall = 0;                     // antall ombyttinger i tabellen
+        for (int i = 1; i < a.length; i++)  // starter med i = 1
+        {
+            if (a[i - 1] > a[i])              // sammenligner to naboverdier
+            {
+                bytt(a, i - 1, i);              // bytter om to naboverdier
+                antall++;                       // teller opp ombyttingene
+            }
+        }
+        return antall;                      // returnerer
+    }
+
+    //Metode for utvalgssortering
+    public static void utvalgssortering(int[] a)
+    {
+        for (int i = 0; i < a.length - 1; i++)
+            bytt(a, i, min(a, i, a.length));  // to hjelpemetoder
+    }
+
+    //Metode for linæersøk
+    public static int lineærsøk(int[] a, int verdi)
+    {
+        if (a.length == 0 || verdi > a[a.length-1])
+            return -(a.length + 1);  // verdi er større enn den største
+
+        int i = 0; for( ; a[i] < verdi; i++);  // siste verdi er vaktpost
+
+        return verdi == a[i] ? i : -(i + 1);   // sjekker innholdet i a[i]
+    }
 }
